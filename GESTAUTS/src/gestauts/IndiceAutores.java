@@ -19,7 +19,7 @@ public class IndiceAutores {
     private HashMap<Integer,TreeSet<String>> indice;
 
 public IndiceAutores(){
-    indice=new HashMap<>();
+    indice=new HashMap<Integer,TreeSet<String>>(200);
 }
 
 public IndiceAutores(HashMap<Integer,TreeSet<String>> index){
@@ -34,7 +34,7 @@ public IndiceAutores(HashMap<Integer,TreeSet<String>> index){
 public IndiceAutores(IndiceAutores index){
     
     indice.clear();
-    indice=new HashMap<>();
+    indice=new HashMap<Integer,TreeSet<String>>();
     for(int n:index.indice.keySet()){
         indice.put(n, index.indice.get(n));
     }
@@ -70,6 +70,58 @@ public boolean equals(Object o){
          }
          return(aux1.containsAll(aux2));
     }
+
+    public void InserirAutor(String autor) {
+    String aux;
+    int index=0;
+    TreeSet<String> autores=new TreeSet<String>();
+    aux=autor;
+    aux=aux.toLowerCase();
+    index=aux.charAt(0)-97;
+    
+    if(indice.get(index)==null){
+        autores.add(autor);
+        indice.put(index, autores);
+    }else{
+    autores=indice.get(index);
+    autores.add(autor);
+    indice.put(index, autores);
+    }   
+    
+    }
+
+   public boolean ExisteAutor(String author) {
+       String aux=new String();
+    int index=0;
+    TreeSet<String> autores=new TreeSet<String>();
+    aux=author;
+    aux=aux.toLowerCase();
+    
+    index=aux.charAt(0)-97;
+    autores=indice.get(index);
+    
+    return (autores.contains(author));
+    }
+public int getNomesDiferentes(){
+    int soma=0;
+    TreeSet<String> aux =new TreeSet<String>();
+    for(int n:indice.keySet()){
+        aux=indice.get(n);
+        soma+=aux.size();
+    }
+return soma;
+}
+
+    public boolean VerificarAutor(String autor) {
+        
+        for(char c:autor.toCharArray()){
+            if(!Character.isDigit(c)){
+                return false;
+            }
+        }
+        return true;
+    }
+
 }    
 
 
