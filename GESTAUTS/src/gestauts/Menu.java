@@ -33,8 +33,10 @@ public class Menu {
             while ((linha = br.readLine()) != null) {
                 // Print the content on the console
                 lines++;
+                if(linha.equals("")==false){
                 
-                tratar_public(linha);
+                
+                tratar_public(linha);}
             }
             //Close the input stream
             stats.setTotalpublics(lines);
@@ -59,7 +61,11 @@ public class Menu {
         switch (op) {
             case 1: {
                 System.out.print("Nome do ficheiro que quer ler: ");
-
+        autores=null;
+        stats=null;        
+                stats=new Estatisticas();
+        autores=new IndiceAutores();
+        
                 filename = ler.nextLine().trim();
 
                 stats.setUltimoficheirolido(filename);
@@ -77,8 +83,7 @@ public class Menu {
     }
 
     public static void main(String[] args) {
-        stats=new Estatisticas();
-        autores=new IndiceAutores();
+        
         int n = 1;
         while (n != 0) {
             n = menu();
@@ -100,7 +105,10 @@ public class Menu {
                 
                 if(autores.VerificarAutor(autor)==false){
                 autores.InserirAutor(autor);   
-             stats.UpdateNomesLidos();}else{
+             stats.UpdateNomesLidos();
+                }
+                
+              else{
                ano=Integer.parseInt(autor);
                stats.CalcularIntervalo(ano);
                

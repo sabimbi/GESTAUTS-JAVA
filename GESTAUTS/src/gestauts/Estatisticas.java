@@ -164,6 +164,12 @@ public class Estatisticas {
         this.minano = minano;
     }
 
+    Estatisticas Inicializar() {
+    return new Estatisticas();
+    }
+
+    
+
     
    
 }

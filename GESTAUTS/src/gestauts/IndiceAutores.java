@@ -20,6 +20,7 @@ public class IndiceAutores {
 
 public IndiceAutores(){
     indice=new HashMap<Integer,TreeSet<String>>(200);
+    indice.clear();
 }
 
 public IndiceAutores(HashMap<Integer,TreeSet<String>> index){
@@ -77,8 +78,13 @@ public boolean equals(Object o){
     TreeSet<String> autores=new TreeSet<String>();
     aux=autor;
     aux=aux.toLowerCase();
-    index=aux.charAt(0)-97;
-    
+    index=aux.charAt(0);
+    if(index<0){
+        autores=indice.get(index);
+        autores.add(autor);
+        indice.put(26,autores);
+    }else{
+        index=aux.charAt(0)-97;
     if(indice.get(index)==null){
         autores.add(autor);
         indice.put(index, autores);
@@ -87,7 +93,7 @@ public boolean equals(Object o){
     autores.add(autor);
     indice.put(index, autores);
     }   
-    
+    }
     }
 
    public boolean ExisteAutor(String author) {
@@ -115,11 +121,16 @@ return soma;
     public boolean VerificarAutor(String autor) {
         
         for(char c:autor.toCharArray()){
-            if(!Character.isDigit(c)){
+            if(Character.isDigit(c)==false){
                 return false;
             }
         }
         return true;
+    }
+
+    void Inicializar() {
+        indice.clear();
+        indice=new HashMap<>();
     }
 
 }    
