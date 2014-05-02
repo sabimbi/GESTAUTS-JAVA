@@ -6,16 +6,35 @@
 
 package gestauts;
 
+import java.io.*;
+import java.util.Scanner;
+
 /**
  *
  * @author Freezer41
  */
 public class GESTAUTS {
+IndiceAutores autores;
+Estatisticas stats;
+public GESTAUTS(){
+    autores=new IndiceAutores();
+    stats=new Estatisticas();
+}
+public GESTAUTS(IndiceAutores index,Estatisticas estats){
+    autores=index.clone();
+    stats=estats.clone();
+        
+}
+public GESTAUTS(GESTAUTS gest){
+    autores=gest.autores.clone();
+    stats=gest.stats.clone();
+}
 
-    IndiceAutores autores;
-    Estatisticas stats;
-    public static void main(String[] args) {
-        // TODO code application logic here
+    void setTotalpublics(int lines) {
+  stats.setTotalpublics(lines);
     }
+    
+
+    
     
 }
