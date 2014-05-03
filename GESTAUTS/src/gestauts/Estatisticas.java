@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
  
 
@@ -17,19 +13,30 @@ public class Estatisticas {
     private int ntotalnomesdiferentes;
     private int maxano;
     private int minano;
-    public Estatisticas(String ultimoficheirolido, int ntotalnomeslidos, int totalpublics, int ntotalnomesdiferentes,int maxano,int minano) {
+    private int[] publicacoes;
+    public Estatisticas(String ultimoficheirolido, int ntotalnomeslidos, int totalpublics, int ntotalnomesdiferentes,int maxano,int minano,int[] publicacoes ) {
+        int i=0;
         this.ultimoficheirolido = ultimoficheirolido;
         this.ntotalnomeslidos = ntotalnomeslidos;
         this.totalpublics = totalpublics;
         this.ntotalnomesdiferentes = ntotalnomesdiferentes;
         this.maxano=maxano;
         this.minano=minano;
+    this.publicacoes=new int[100];
+    for(i=0;i<100;i++){
+        this.publicacoes[i]=publicacoes[i];
+    }
     }
 
     public Estatisticas() {
+        int i=0;
         this.ultimoficheirolido="";
         this.ntotalnomesdiferentes=this.totalpublics=this.ntotalnomeslidos=this.maxano=0;
         this.minano=3000;
+        this.publicacoes=new int[100];
+        for(i=0;i<100;i++){
+            this.publicacoes[i]=0;
+        }
     }
     public Estatisticas(Estatisticas stats){
        this.ultimoficheirolido=stats.getUltimoficheirolido(); 
@@ -38,7 +45,18 @@ public class Estatisticas {
        this.totalpublics=stats.getTotalpublics();
        this.maxano=stats.getMaxAno();
        this.minano=stats.getMinAno();
-       
+       this.publicacoes=stats.getPublicacoes();
+    }
+    public int getNpublics(int ano){
+        return this.publicacoes[ano-1950];
+    }
+    public int[] getPublicacoes(){
+        int i;
+        int[]copia=new int[100];
+        for(i=0;i<100;i++){
+            copia[i]=this.publicacoes[i];
+        }
+        return copia;
     }
     public Estatisticas clone(){
         return new Estatisticas(this);
@@ -65,6 +83,9 @@ public class Estatisticas {
         return ultimoficheirolido;
     }
 
+    public void UpdatePublicacoes(int ano){
+        this.publicacoes[ano-1950]++;
+    }
     /**
      * @param ultimoficheirolido the ultimoficheirolido to set
      */
