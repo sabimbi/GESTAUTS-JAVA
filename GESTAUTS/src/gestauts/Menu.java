@@ -16,7 +16,7 @@ public class Menu {
     private static IndiceAutores autores;
    private static Estatisticas stats;
    private static CatalogoAutores catalogo;
-    public static int parserfile(String filename) {
+    private static int parserfile(String filename) {
         int lines = 0;
         try {
   // Open the file that is the first 
@@ -90,10 +90,11 @@ public class Menu {
     }
 
     private static void tratar_public(String linha) {
-        ArrayList<String> lista;
+        ArrayList<String> lista,coautores;
         String copia, autor;
         int ano;
         lista = new ArrayList<String>(Arrays.asList(linha.split(",")));
+        coautores=new ArrayList<>();
         int i, n;
         n = lista.size();
         copia = linha;
@@ -113,10 +114,18 @@ public class Menu {
                
                 }
             }
-            
-        
+            for(i=1;i<n-1;i++){
+                coautores.add(lista.get(i));
+            }
+            autor=lista.get(0);
+            ano=Integer.parseInt(lista.get(i));
+         InserirCatalogo(autor,coautores,ano);
         
             
  stats.setNtotalnomesdiferentes(autores.getNomesDiferentes());
+    }
+
+    private static void InserirCatalogo(String autor,ArrayList<String> coautores, int ano) {
+    
     }
 }
