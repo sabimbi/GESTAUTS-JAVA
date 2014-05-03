@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gestauts;
+ 
 
 import java.io.*;
 
@@ -19,6 +19,7 @@ public class Menu {
 
     private static IndiceAutores autores;
    private static Estatisticas stats;
+   private static CatalogoAutores catalogo;
     public static int parserfile(String filename) {
         int lines = 0;
         try {
@@ -65,7 +66,7 @@ public class Menu {
         stats=null;        
                 stats=new Estatisticas();
         autores=new IndiceAutores();
-        
+        catalogo=new CatalogoAutores();
                 filename = ler.nextLine().trim();
 
                 stats.setUltimoficheirolido(filename);

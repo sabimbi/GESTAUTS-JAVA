@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package gestauts;
+ 
 
 /**
  *
@@ -141,8 +141,9 @@ public class Estatisticas {
     }
 
    public void CalcularIntervalo(int ano) {
-        if(ano>this.maxano){
-            this.maxano=ano;
+       int cpy; 
+       if(ano>this.maxano){
+          this.maxano=ano;
         }else{
             if(ano<this.maxano && ano<this.minano){
                 this.minano=ano;
